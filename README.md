@@ -22,10 +22,29 @@ CapCut preset it recreates; the description stays in the source and is not part 
 Moves are in parts of the output frame. CapCut moves by a multiple of the clip size, so these packs
 use a reference clip of 0.3 of the frame. Turns are in degrees, clockwise.
 
+## Shader packages
+
+Animations that change pixels rather than move the clip are gpufx effect packages in
+`packages/gpufx/capcut-anim/<name>/` (manifest and WGSL shaders, see the gpufx effect format). Each
+has one input and a float `progress`: 0 is the start of the in animation, 1 is the untouched clip.
+The editor drives `progress` from 0 to 1 for an in animation and from 1 to 0 for an out one. Every
+package is one compute pass. They are written anew from how the animations look.
+
+| Zip | Params besides `progress` |
+|---|---|
+| `io.github.tqk2811.capcut-anim.directional-blur.zip` | `angle` (degrees), `strength` |
+| `io.github.tqk2811.capcut-anim.zoom-blur.zip` | `scale` (start scale), `strength`, `center` |
+| `io.github.tqk2811.capcut-anim.wipe.zip` | `direction` (right, left, down, up), `feather` |
+| `io.github.tqk2811.capcut-anim.clock-wipe.zip` | `start_angle`, `clockwise`, `feather`, `center` |
+| `io.github.tqk2811.capcut-anim.slide.zip` | `direction`, `distance` (frames, mirror wrapped), `motion_blur` |
+
+The wipes work through alpha. The blurs average in premultiplied alpha, so transparent edges stay
+clean.
+
 ## Build
 
 ```sh
-python scripts/pack.py           # dist/<pack id>.zip for every pack
+python scripts/pack.py           # dist/<pack id>.zip for every pack and shader package
 python scripts/pack.py --check   # validate the sources only
 ```
 
