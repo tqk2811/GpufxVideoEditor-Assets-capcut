@@ -21,8 +21,8 @@ fields only, safe ids, kinds in/out/loop, 0 < default_duration <= 60, applies_to
 with keyframes in rising t within 0..1 and finite values, known easings. An item may carry an
 `effect` (a gpufx package by id, the progress param and static params) and then needs no curve; the
 effect is checked against the packages of this repository (id, a float progress param, params that
-exist with a type the reader accepts: a number, a bool or a vector of the right length, never an
-enum or an expression).
+exist with a type the reader accepts: a number, a bool, a vector of the right length, or for an enum
+param the name of one of its values; never an expression).
 """
 
 import argparse
@@ -94,6 +94,7 @@ def shader_package_params():
             found[manifest["id"].lower()] = {
                 "inputs": len(manifest.get("inputs", [])),
                 "params": {p["name"]: p.get("type") for p in manifest.get("params", [])},
+                "enums": {p["name"]: p.get("values", []) for p in manifest.get("params", []) if p.get("type") == "enum"},
             }
     return found
 
@@ -103,13 +104,15 @@ VECTOR_LENGTHS = {"vec2": 2, "vec3": 3, "vec4": 4, "color": 4}
 
 
 def is_static_value(value):
-    """A number, a bool, or 2 to 4 numbers (the reader's ItemEffect rule)."""
+    """A number, a bool, a string (an enum choice) or 2 to 4 numbers (the reader's ItemEffect rule)."""
+    if isinstance(value, str):
+        return True
     if isinstance(value, bool) or finite(value):
         return True
     return isinstance(value, list) and 2 <= len(value) <= 4 and all(finite(v) for v in value)
 
 
-def value_fits(kind, value):
+def value_fits(kind, value, choices=()):
     if kind == "float":
         return finite(value)
     if kind == "int":
@@ -118,7 +121,9 @@ def value_fits(kind, value):
         return isinstance(value, bool)
     if kind in VECTOR_LENGTHS:
         return isinstance(value, list) and len(value) == VECTOR_LENGTHS[kind] and all(finite(v) for v in value)
-    return False  # enum and expr params are not accepted
+    if kind == "enum":
+        return isinstance(value, str) and value in choices
+    return False  # expr params are not accepted
 
 
 def check_effect(where, effect):
@@ -143,10 +148,10 @@ def check_effect(where, effect):
         fail(f"{where}: '{progress}' is not a float param of '{package}'")
     for name, value in params.items():
         if not name.strip() or not is_static_value(value):
-            fail(f"{where}: the effect param '{name}' must be a number, a bool or 2 to 4 numbers")
+            fail(f"{where}: the effect param '{name}' must be a number, a bool, a string or 2 to 4 numbers")
         if name not in info["params"]:
             fail(f"{where}: the package '{package}' has no param '{name}'")
-        if not value_fits(info["params"][name], value):
+        if not value_fits(info["params"][name], value, info["enums"].get(name, ())):
             fail(f"{where}: the value of '{name}' does not fit its type ({info['params'][name]}) in '{package}'")
 
 

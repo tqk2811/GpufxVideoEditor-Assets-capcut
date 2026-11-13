@@ -15,7 +15,7 @@ CapCut is a trademark of its owner, and this project is not affiliated with it.
 | `capcut-anim-basic.zip` | every clip | zoom, mini zoom, slides in four directions, spin out, pulse, shake, flash |
 | `capcut-anim-text.zip` | text | shrink in/out, spin in, jump, bob |
 | `capcut-anim-sticker.zip` | sticker | fade in/out, rotate, flip |
-| `capcut-anim-video.zip` | video, image | blur, zoom blur, wipe, clock wipe and slide, in and out, each running a shader package |
+| `capcut-anim-video.zip` | video, image | blur, zoom blur, wipe and slide in four directions, clock wipe, in and out, each running a shader package |
 
 The sources are `animations/<pack>/pack.json`. Each item has a `description` that names the
 CapCut preset it recreates; the description stays in the source and is not part of the manifest.
@@ -41,8 +41,8 @@ package is one compute pass. They are written anew from how the animations look.
 
 `capcut-anim-video` items have an `effect` instead of a `curve`: `{package, progress?, params?}`. An
 in item drives `progress` from 0 to 1, an out item from 1 to 0, a loop item by its phase. `params` hold
-numbers, bools or 2 to 4 numbers; the editor accepts no enum param, so `wipe` and `slide` run in
-their default direction (right) only. `scripts/pack.py` checks the package id against the packages
+numbers, bools, 2 to 4 numbers, or for an enum param the name of one of its values (`wipe` and `slide`
+set `direction` to right, left, down or up, one item each). `scripts/pack.py` checks the package id against the packages
 of this repository, and the params against the manifest of that package.
 
 The wipes work through alpha. The blurs average in premultiplied alpha, so transparent edges stay

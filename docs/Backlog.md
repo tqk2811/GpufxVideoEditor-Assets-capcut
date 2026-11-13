@@ -31,12 +31,6 @@ About 300 animations (all 25 video animations, most text ones) need a shader. Th
 frame. They are used by the items of `capcut-anim-video` (blur, zoom blur, wipe, clock wipe and
 slide, in and out).
 
-## [Vừa] Wipe and slide in the other three directions
-
-The `direction` param of `wipe` and `slide` is an enum, and the editor's item `effect` accepts no
-enum param, so `capcut-anim-video` only has them going right. Left, up and down need either enum
-support in the item `effect` or numeric direction params in the shader packages.
-
 ## [Thấp] Class C shader batch 2
 
 Glitch, chromatic aberration, color flicker and a dissolve through procedural noise, as gpufx

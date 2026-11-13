@@ -85,7 +85,7 @@
     },
     {
       "id": "wipe-in",
-      "name": "Wipe In",
+      "name": "Wipe Right In",
       "description": "Uncovered by a soft edge moving to the right (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
       "kind": "in",
       "default_duration": 0.5,
@@ -96,13 +96,68 @@
       "effect": {
         "package": "io.github.tqk2811.capcut-anim.wipe",
         "params": {
+          "direction": "right",
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-left-in",
+      "name": "Wipe Left In",
+      "description": "Uncovered by a soft edge moving to the left (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "direction": "left",
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-down-in",
+      "name": "Wipe Down In",
+      "description": "Uncovered by a soft edge moving downward (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "direction": "down",
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-up-in",
+      "name": "Wipe Up In",
+      "description": "Uncovered by a soft edge moving upward (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "direction": "up",
           "feather": 0.05
         }
       }
     },
     {
       "id": "wipe-out",
-      "name": "Wipe Out",
+      "name": "Wipe Right Out",
       "description": "Covered again by a soft edge moving to the right (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
       "kind": "out",
       "default_duration": 0.5,
@@ -113,6 +168,61 @@
       "effect": {
         "package": "io.github.tqk2811.capcut-anim.wipe",
         "params": {
+          "direction": "right",
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-left-out",
+      "name": "Wipe Left Out",
+      "description": "Covered again by a soft edge moving to the left (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "direction": "left",
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-down-out",
+      "name": "Wipe Down Out",
+      "description": "Covered again by a soft edge moving downward (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "direction": "down",
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-up-out",
+      "name": "Wipe Up Out",
+      "description": "Covered again by a soft edge moving upward (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "direction": "up",
           "feather": 0.05
         }
       }
@@ -165,8 +275,8 @@
     },
     {
       "id": "slide-in",
-      "name": "Slide In",
-      "description": "Slides across the frame with motion blur and settles (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "name": "Slide Right In",
+      "description": "Slides to the right across the frame with motion blur and settles (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
       "kind": "in",
       "default_duration": 0.5,
       "applies_to": [
@@ -176,6 +286,64 @@
       "effect": {
         "package": "io.github.tqk2811.capcut-anim.slide",
         "params": {
+          "direction": "right",
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-left-in",
+      "name": "Slide Left In",
+      "description": "Slides to the left across the frame with motion blur and settles (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "direction": "left",
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-down-in",
+      "name": "Slide Down In",
+      "description": "Slides downward across the frame with motion blur and settles (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "direction": "down",
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-up-in",
+      "name": "Slide Up In",
+      "description": "Slides upward across the frame with motion blur and settles (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "direction": "up",
           "distance": 1,
           "motion_blur": 0.1
         }
@@ -183,8 +351,8 @@
     },
     {
       "id": "slide-out",
-      "name": "Slide Out",
-      "description": "Slides across the frame with motion blur as it leaves (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "name": "Slide Right Out",
+      "description": "Slides to the right across the frame with motion blur as it leaves (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
       "kind": "out",
       "default_duration": 0.5,
       "applies_to": [
@@ -194,6 +362,64 @@
       "effect": {
         "package": "io.github.tqk2811.capcut-anim.slide",
         "params": {
+          "direction": "right",
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-left-out",
+      "name": "Slide Left Out",
+      "description": "Slides to the left across the frame with motion blur as it leaves (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "direction": "left",
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-down-out",
+      "name": "Slide Down Out",
+      "description": "Slides downward across the frame with motion blur as it leaves (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "direction": "down",
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-up-out",
+      "name": "Slide Up Out",
+      "description": "Slides upward across the frame with motion blur as it leaves (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "direction": "up",
           "distance": 1,
           "motion_blur": 0.1
         }
