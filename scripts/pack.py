@@ -18,7 +18,11 @@ reproducible byte for byte (sorted entries, fixed timestamps). Standard library 
 Before writing, each manifest is checked with the rules of the editor's strict reader
 (crates/d3d12-backend/src/clip_animation_pack.rs and engine::check_curve of GpufxVideoEditor): known
 fields only, safe ids, kinds in/out/loop, 0 < default_duration <= 60, applies_to kinds, curve tracks
-with keyframes in rising t within 0..1 and finite values, known easings.
+with keyframes in rising t within 0..1 and finite values, known easings. An item may carry an
+`effect` (a gpufx package by id, the progress param and static params) and then needs no curve; the
+effect is checked against the packages of this repository (id, a float progress param, params that
+exist with a type the reader accepts: a number, a bool or a vector of the right length, never an
+enum or an expression).
 """
 
 import argparse
@@ -81,8 +85,74 @@ def check_ease(where, ease):
         fail(f"{where}: unknown ease '{name}'")
 
 
+def shader_package_params():
+    """Every gpufx package of this repository by manifest id (lower case): inputs and params."""
+    found = {}
+    for manifest_file in sorted((ROOT / "packages").rglob("manifest.json")):
+        manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+        if isinstance(manifest.get("id"), str):
+            found[manifest["id"].lower()] = {
+                "inputs": len(manifest.get("inputs", [])),
+                "params": {p["name"]: p.get("type") for p in manifest.get("params", [])},
+            }
+    return found
+
+
+MAX_EFFECT_PARAMS = 64
+VECTOR_LENGTHS = {"vec2": 2, "vec3": 3, "vec4": 4, "color": 4}
+
+
+def is_static_value(value):
+    """A number, a bool, or 2 to 4 numbers (the reader's ItemEffect rule)."""
+    if isinstance(value, bool) or finite(value):
+        return True
+    return isinstance(value, list) and 2 <= len(value) <= 4 and all(finite(v) for v in value)
+
+
+def value_fits(kind, value):
+    if kind == "float":
+        return finite(value)
+    if kind == "int":
+        return finite(value) and float(value).is_integer()
+    if kind == "bool":
+        return isinstance(value, bool)
+    if kind in VECTOR_LENGTHS:
+        return isinstance(value, list) and len(value) == VECTOR_LENGTHS[kind] and all(finite(v) for v in value)
+    return False  # enum and expr params are not accepted
+
+
+def check_effect(where, effect):
+    check_fields(f"{where} effect", effect, ("package",), ("progress", "params"))
+    package = effect["package"]
+    if not isinstance(package, str) or not SAFE_ID.match(package) or package in (".", ".."):
+        fail(f"{where}: the effect package '{package}' is not a package id")
+    progress = effect.get("progress", "progress")
+    if not isinstance(progress, str) or not progress.strip():
+        fail(f"{where}: the effect has an empty progress")
+    params = effect.get("params", {})
+    if not isinstance(params, dict) or len(params) > MAX_EFFECT_PARAMS:
+        fail(f"{where}: effect params must be an object of at most {MAX_EFFECT_PARAMS} entries")
+    if progress in params:
+        fail(f"{where}: the effect sets its progress param '{progress}' in params")
+    info = shader_package_params().get(package.lower())
+    if info is None:
+        fail(f"{where}: the effect package '{package}' is not a package of this repository")
+    if info["inputs"] != 1:
+        fail(f"{where}: the package '{package}' is not an effect of one picture")
+    if info["params"].get(progress) != "float":
+        fail(f"{where}: '{progress}' is not a float param of '{package}'")
+    for name, value in params.items():
+        if not name.strip() or not is_static_value(value):
+            fail(f"{where}: the effect param '{name}' must be a number, a bool or 2 to 4 numbers")
+        if name not in info["params"]:
+            fail(f"{where}: the package '{package}' has no param '{name}'")
+        if not value_fits(info["params"][name], value):
+            fail(f"{where}: the value of '{name}' does not fit its type ({info['params'][name]}) in '{package}'")
+
+
 def check_item(item):
-    check_fields("an item", item, ("id", "name", "kind", "default_duration", "curve"), ("applies_to", "effect"))
+    required = ("id", "name", "kind", "default_duration") if "effect" in item else ("id", "name", "kind", "default_duration", "curve")
+    check_fields("an item", item, required, ("applies_to", "effect", "curve"))
     where = f"item '{item['id']}'"
     if not isinstance(item["id"], str) or not SAFE_ID.match(item["id"]) or item["id"] in (".", ".."):
         fail(f"{where}: unsafe id")
@@ -93,13 +163,19 @@ def check_item(item):
     duration = item["default_duration"]
     if not (finite(duration) and 0 < duration <= MAX_DEFAULT_DURATION):
         fail(f"{where}: default_duration must be in (0, {MAX_DEFAULT_DURATION}]")
+    if "effect" in item:
+        check_effect(where, item["effect"])
     if "applies_to" in item:
         kinds = item["applies_to"]
         if not kinds or len(set(kinds)) != len(kinds) or any(k not in CLIP_KINDS for k in kinds):
             fail(f"{where}: bad applies_to")
+    if "curve" not in item:
+        return
     check_fields(f"{where} curve", item["curve"], ("tracks",))
     tracks = item["curve"]["tracks"]
     if not isinstance(tracks, dict) or not tracks:
+        if "effect" in item and isinstance(tracks, dict):
+            return
         fail(f"{where}: the curve has no track")
     for prop, keys in tracks.items():
         if prop not in PROPERTIES:

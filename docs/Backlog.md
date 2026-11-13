@@ -28,8 +28,14 @@ range selector in the editor.
 
 About 300 animations (all 25 video animations, most text ones) need a shader. The first batch is in
 `packages/gpufx/capcut-anim/`: directional blur, zoom blur, wipes, clock wipe, slide inside the
-frame. The editor still has to run them from an animation preset (the `effect` part of a
-clip-animation item), and the presets that use them are not written yet.
+frame. They are used by the items of `capcut-anim-video` (blur, zoom blur, wipe, clock wipe and
+slide, in and out).
+
+## [Vừa] Wipe and slide in the other three directions
+
+The `direction` param of `wipe` and `slide` is an enum, and the editor's item `effect` accepts no
+enum param, so `capcut-anim-video` only has them going right. Left, up and down need either enum
+support in the item `effect` or numeric direction params in the shader packages.
 
 ## [Thấp] Class C shader batch 2
 

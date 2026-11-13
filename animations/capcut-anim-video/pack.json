@@ -1,0 +1,203 @@
+{
+  "id": "capcut-anim-video",
+  "name": "Clip animations: CapCut video",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "blur-in",
+      "name": "Blur In",
+      "description": "Starts blurred along a line and sharpens (CapCut \"Blur\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.directional-blur",
+        "params": {
+          "angle": 0,
+          "strength": 0.15
+        }
+      }
+    },
+    {
+      "id": "blur-out",
+      "name": "Blur Out",
+      "description": "Blurs along a line as it leaves (CapCut \"Blur\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.directional-blur",
+        "params": {
+          "angle": 0,
+          "strength": 0.15
+        }
+      }
+    },
+    {
+      "id": "zoom-blur-in",
+      "name": "Zoom Blur In",
+      "description": "Starts zoomed in and radially blurred, then settles (CapCut \"Zoom Blur\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.zoom-blur",
+        "params": {
+          "scale": 1.6,
+          "strength": 0.3,
+          "center": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    },
+    {
+      "id": "zoom-blur-out",
+      "name": "Zoom Blur Out",
+      "description": "Zooms in with a radial blur as it leaves (CapCut \"Zoom Blur\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.zoom-blur",
+        "params": {
+          "scale": 1.6,
+          "strength": 0.3,
+          "center": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    },
+    {
+      "id": "wipe-in",
+      "name": "Wipe In",
+      "description": "Uncovered by a soft edge moving to the right (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "wipe-out",
+      "name": "Wipe Out",
+      "description": "Covered again by a soft edge moving to the right (CapCut \"Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.wipe",
+        "params": {
+          "feather": 0.05
+        }
+      }
+    },
+    {
+      "id": "clock-wipe-in",
+      "name": "Clock Wipe In",
+      "description": "Uncovered by a hand sweeping clockwise from twelve (CapCut \"Clock Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.clock-wipe",
+        "params": {
+          "start_angle": 0,
+          "clockwise": true,
+          "feather": 0.02,
+          "center": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    },
+    {
+      "id": "clock-wipe-out",
+      "name": "Clock Wipe Out",
+      "description": "Covered by a hand sweeping clockwise from twelve (CapCut \"Clock Wipe\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.clock-wipe",
+        "params": {
+          "start_angle": 0,
+          "clockwise": true,
+          "feather": 0.02,
+          "center": [
+            0.5,
+            0.5
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-in",
+      "name": "Slide In",
+      "description": "Slides across the frame with motion blur and settles (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    },
+    {
+      "id": "slide-out",
+      "name": "Slide Out",
+      "description": "Slides across the frame with motion blur as it leaves (CapCut \"Slide\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "video",
+        "image"
+      ],
+      "effect": {
+        "package": "io.github.tqk2811.capcut-anim.slide",
+        "params": {
+          "distance": 1,
+          "motion_blur": 0.1
+        }
+      }
+    }
+  ]
+}
