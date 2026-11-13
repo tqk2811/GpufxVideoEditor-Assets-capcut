@@ -1,0 +1,68 @@
+{
+  "api": 1,
+  "id": "io.github.tqk2811.capcut-anim.clock-wipe",
+  "name": "Clock Wipe",
+  "used_for": [
+    "gpufx"
+  ],
+  "version": "1.0.0",
+  "description": "Recreation of the CapCut \"Clock Wipe\" animation. Drive `progress` from 0 to 1.",
+  "inputs": [
+    {
+      "name": "src",
+      "description": "The animated clip"
+    }
+  ],
+  "params": [
+    {
+      "name": "progress",
+      "type": "float",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "description": "0 = start of the in animation, 1 = the untouched clip. Use 1 - progress for an out animation"
+    },
+    {
+      "name": "start_angle",
+      "type": "float",
+      "default": 0,
+      "min": -360,
+      "max": 360,
+      "description": "Angle where the hand starts, in degrees clockwise from twelve o'clock"
+    },
+    {
+      "name": "clockwise",
+      "type": "bool",
+      "default": true,
+      "description": "Sweep clockwise"
+    },
+    {
+      "name": "feather",
+      "type": "float",
+      "default": 0.02,
+      "min": 0,
+      "max": 1,
+      "description": "Width of the soft edge, in turns"
+    },
+    {
+      "name": "center",
+      "type": "vec2",
+      "default": [
+        0.5,
+        0.5
+      ],
+      "min": 0,
+      "max": 1,
+      "description": "Centre of the sweep, 0..1"
+    }
+  ],
+  "groups": [
+    {
+      "passes": [
+        {
+          "shader": "shaders/clock.wgsl"
+        }
+      ]
+    }
+  ]
+}

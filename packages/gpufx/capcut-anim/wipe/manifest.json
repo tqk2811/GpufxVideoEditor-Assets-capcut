@@ -1,0 +1,55 @@
+{
+  "api": 1,
+  "id": "io.github.tqk2811.capcut-anim.wipe",
+  "name": "Wipe",
+  "used_for": [
+    "gpufx"
+  ],
+  "version": "1.0.0",
+  "description": "Recreation of the CapCut \"Wipe\" animation. Drive `progress` from 0 to 1.",
+  "inputs": [
+    {
+      "name": "src",
+      "description": "The animated clip"
+    }
+  ],
+  "params": [
+    {
+      "name": "progress",
+      "type": "float",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "description": "0 = start of the in animation, 1 = the untouched clip. Use 1 - progress for an out animation"
+    },
+    {
+      "name": "direction",
+      "type": "enum",
+      "values": [
+        "right",
+        "left",
+        "down",
+        "up"
+      ],
+      "default": "right",
+      "description": "Direction of travel"
+    },
+    {
+      "name": "feather",
+      "type": "float",
+      "default": 0.05,
+      "min": 0,
+      "max": 1,
+      "description": "Width of the soft edge, in parts of the frame"
+    }
+  ],
+  "groups": [
+    {
+      "passes": [
+        {
+          "shader": "shaders/wipe.wgsl"
+        }
+      ]
+    }
+  ]
+}

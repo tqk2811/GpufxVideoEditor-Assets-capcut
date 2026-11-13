@@ -1,0 +1,51 @@
+{
+  "api": 1,
+  "id": "io.github.tqk2811.capcut-anim.directional-blur",
+  "name": "Directional Blur",
+  "used_for": [
+    "gpufx"
+  ],
+  "version": "1.0.0",
+  "description": "Recreation of the CapCut \"Blur\" animation. Drive `progress` from 0 to 1.",
+  "inputs": [
+    {
+      "name": "src",
+      "description": "The animated clip"
+    }
+  ],
+  "params": [
+    {
+      "name": "progress",
+      "type": "float",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "description": "0 = start of the in animation, 1 = the untouched clip. Use 1 - progress for an out animation"
+    },
+    {
+      "name": "angle",
+      "type": "float",
+      "default": 0,
+      "min": -360,
+      "max": 360,
+      "description": "Direction of the blur in degrees, 0 = horizontal, clockwise"
+    },
+    {
+      "name": "strength",
+      "type": "float",
+      "default": 0.15,
+      "min": 0,
+      "max": 1,
+      "description": "Blur length at progress 0, in parts of the longer side"
+    }
+  ],
+  "groups": [
+    {
+      "passes": [
+        {
+          "shader": "shaders/blur.wgsl"
+        }
+      ]
+    }
+  ]
+}
