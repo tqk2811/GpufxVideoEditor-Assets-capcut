@@ -1,7 +1,7 @@
 {
   "id": "capcut-anim-text",
   "name": "Clip animations: CapCut text",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "items": [
     {
       "id": "shrink-in",
@@ -163,6 +163,50 @@
               "t": 0.9375,
               "value": 0.029,
               "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bob",
+      "name": "Bob",
+      "description": "Glides up and back down in one smooth arc per cycle (CapCut \"Small Jumps\", \"Excited Jumps\", \"Steady Hops\" and \"Small Bounces\", which share these keyframes). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "loop",
+      "default_duration": 0.5,
+      "applies_to": [
+        "text"
+      ],
+      "curve": {
+        "tracks": {
+          "dy": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": {
+                "cubicBezier": [
+                  0.33,
+                  0,
+                  0.67,
+                  1
+                ]
+              }
+            },
+            {
+              "t": 0.5,
+              "value": -0.15,
+              "ease": {
+                "cubicBezier": [
+                  0.33,
+                  0,
+                  0.67,
+                  1
+                ]
+              }
             },
             {
               "t": 1,

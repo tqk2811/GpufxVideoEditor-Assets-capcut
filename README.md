@@ -13,7 +13,7 @@ CapCut is a trademark of its owner, and this project is not affiliated with it.
 | Zip | Applies to | Contents |
 |---|---|---|
 | `capcut-anim-basic.zip` | every clip | zoom, mini zoom, slides in four directions, spin out, pulse, shake, flash |
-| `capcut-anim-text.zip` | text | shrink in/out, spin in, jump |
+| `capcut-anim-text.zip` | text | shrink in/out, spin in, jump, bob |
 | `capcut-anim-sticker.zip` | sticker | fade in/out, rotate, flip |
 
 The sources are `animations/<pack>/pack.json`. Each item has a `description` that names the

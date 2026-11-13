@@ -3,27 +3,34 @@
 CapCut animations not recreated yet, by what they need. Counts come from the reference set
 (650 animations: Texts 601, Stickers 24, Videos 25).
 
-## [Vá»«a] Class A text animations driven by keyframe files
+## [Vừa] Class A text animations driven by keyframe files
 
-About 87 text animations move the whole clip with alpha, scale, position and rotation only, but
-their motion is stored as keyframe data rather than simple tweens (for example Neon Flicker, Sign
-Flicker, Stretchy Bouncy, Steady Pulse, Pendulum Clock, Leftward/Rightward Pirouette, Rise Up,
-Spin Slam, Turbo Spin-In/Out, Drop & Rebound). They fit the current curve format; each needs its
-keyframes read and rewritten by hand.
+About 87 text animations keep their motion in `studioAnim.lsanim` keyframe files. Only 19 of those
+files are plain JSON; the other 68 (for example Neon Flicker, Stretchy Bouncy, Steady Pulse,
+Pendulum Clock, Leftward/Rightward Pirouette, Rise Up, Spin Slam, Turbo Spin-In, Drop & Rebound)
+are encrypted and were not read, so they can only be recreated by watching them in CapCut.
 
-## [Tháº¥p] Class B: per character
+Of the 19 readable files, Small Jumps, Excited Jumps, Steady Hops and Small Bounces share the same
+keyframes and became `bob` in `capcut-anim-text`; their differences live in the encrypted project
+file. The rest are per character after all and belong to class B: Slide & Rise, Sign Flicker, Flip
+Down, Sliding Drop and Cheeky Bounce animate the range selector offset, Ocean Bounce and Jittery
+Assembly stagger with `as`/`ae` selectors, and Cheerful Lineup, Pinball Shots, Random Order, Giddy
+Rainbow, Domino Out, Grainy Magic, Flip Fade and Balloons Pop run a selector script
+(`lumi_animation.jsdat`).
+
+## [Thấp] Class B: per character
 
 44 animations (Texts 43, Stickers 1) animate each letter, word or line with a stagger (Type 1/2/3,
 Squeeze, Slingshot, Boing, Tremble, Wave, Random Bounce, Float). They need per-glyph rendering and a
 range selector in the editor.
 
-## [Tháº¥p] Class C: shader
+## [Thấp] Class C: shader
 
 About 300 animations (all 25 video animations, most text ones) need a shader: directional or zoom
 blur, wipes, clock wipe, glitch, slide inside the frame with motion blur. They need gpufx effect
 packages driven by a `progress` parameter.
 
-## [Tháº¥p] Class D: media
+## [Thấp] Class D: media
 
 About 180 animations use images, videos or fonts (noise or mask textures, overlays, a bundled font).
 Masks and noise can be made procedurally; the rest stays out of scope, since no CapCut media may be
