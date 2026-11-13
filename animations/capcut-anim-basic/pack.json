@@ -1,0 +1,575 @@
+{
+  "id": "capcut-anim-basic",
+  "name": "Clip animations: CapCut basic",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "zoom-in",
+      "name": "Zoom In",
+      "description": "Grows from half size while fading in (CapCut \"Zoom In\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 0.5,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mini-zoom-in",
+      "name": "Mini Zoom In",
+      "description": "Grows a little and rises into place (CapCut \"Mini Zoom\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 0.9,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ],
+          "dy": [
+            {
+              "t": 0,
+              "value": 0.0225,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.2,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-left-in",
+      "name": "Slide Left",
+      "description": "Comes in from the right (CapCut \"Slide Left\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dx": [
+            {
+              "t": 0,
+              "value": 0.399,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-right-in",
+      "name": "Slide Right",
+      "description": "Comes in from the left (CapCut \"Slide Right\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dx": [
+            {
+              "t": 0,
+              "value": -0.399,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-up-in",
+      "name": "Slide Up",
+      "description": "Comes in from below (CapCut \"Slide Up\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dy": [
+            {
+              "t": 0,
+              "value": 0.399,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-down-in",
+      "name": "Slide Down",
+      "description": "Comes in from above (CapCut \"Slide Down\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dy": [
+            {
+              "t": 0,
+              "value": -0.399,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "grow-out",
+      "name": "Grow Out",
+      "description": "Grows to 1.5 times its size while fading out (CapCut \"Zoom In\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 1.5
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mini-zoom-out",
+      "name": "Mini Zoom Out",
+      "description": "Grows a little and rises, fading in the last fifth (CapCut \"Mini Zoom\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 1.11
+            }
+          ],
+          "dy": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": -0.0225
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0.8,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-left-out",
+      "name": "Slide Left Out",
+      "description": "Leaves to the left (CapCut \"Slide Left\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dx": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": -0.399
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-right-out",
+      "name": "Slide Right Out",
+      "description": "Leaves to the right (CapCut \"Slide Right\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dx": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0.399
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-up-out",
+      "name": "Slide Up Out",
+      "description": "Leaves upwards (CapCut \"Slide Up\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dy": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": -0.399
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "slide-down-out",
+      "name": "Slide Down Out",
+      "description": "Leaves downwards (CapCut \"Slide Down\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "dy": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0.399
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spin-out",
+      "name": "Spin Out",
+      "description": "Turns a full circle counter-clockwise while shrinking away (CapCut \"Spin Out 1\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0.01
+            }
+          ],
+          "rotation": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": -360
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0.8,
+              "value": 1,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pulse",
+      "name": "Pulse",
+      "description": "Beats like a heart: a small dip, then up to 1.5 times and back (CapCut \"Pulse\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "loop",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.0625,
+              "value": 0.916667,
+              "ease": "easeIn"
+            },
+            {
+              "t": 0.125,
+              "value": 1,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.5,
+              "value": 1.5,
+              "ease": "easeIn"
+            },
+            {
+              "t": 0.875,
+              "value": 1,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.9375,
+              "value": 0.916667,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "shake",
+      "name": "Shake",
+      "description": "Rocks 15 degrees to each side (CapCut \"Shake 1\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "loop",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "rotation": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "linear"
+            },
+            {
+              "t": 0.25,
+              "value": 15,
+              "ease": "linear"
+            },
+            {
+              "t": 0.75,
+              "value": -15,
+              "ease": "linear"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "flash",
+      "name": "Flash",
+      "description": "Fades in and out once per cycle (CapCut \"Flash\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "loop",
+      "default_duration": 0.5,
+      "curve": {
+        "tracks": {
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.5,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

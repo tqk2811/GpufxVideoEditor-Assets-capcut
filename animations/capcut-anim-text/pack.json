@@ -1,0 +1,176 @@
+{
+  "id": "capcut-anim-text",
+  "name": "Clip animations: CapCut text",
+  "version": "1.0.0",
+  "items": [
+    {
+      "id": "shrink-in",
+      "name": "Shrink In",
+      "description": "Shrinks from 1.5 times its size while fading in (CapCut \"Zoom Out\", in). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "text"
+      ],
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 1.5,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spin-in",
+      "name": "Spin In",
+      "description": "Turns two circles clockwise while growing from a dot (CapCut \"Spin In 1\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "in",
+      "default_duration": 0.5,
+      "applies_to": [
+        "text"
+      ],
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 0.01,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 1
+            }
+          ],
+          "rotation": [
+            {
+              "t": 0,
+              "value": -720,
+              "ease": "easeOut"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.2,
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "shrink-out",
+      "name": "Shrink Out",
+      "description": "Shrinks to half size while fading out (CapCut \"Zoom Out\", out). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "out",
+      "default_duration": 0.5,
+      "applies_to": [
+        "text"
+      ],
+      "curve": {
+        "tracks": {
+          "scale": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0.5
+            }
+          ],
+          "opacity": [
+            {
+              "t": 0,
+              "value": 1,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jump",
+      "name": "Jump",
+      "description": "Hops up with a small crouch before and after (CapCut \"Jump\"). Recreated and optimized with reference to CapCut's resources.",
+      "kind": "loop",
+      "default_duration": 0.5,
+      "applies_to": [
+        "text"
+      ],
+      "curve": {
+        "tracks": {
+          "dy": [
+            {
+              "t": 0,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.0625,
+              "value": 0.029,
+              "ease": "easeIn"
+            },
+            {
+              "t": 0.125,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.5,
+              "value": -0.174,
+              "ease": "easeIn"
+            },
+            {
+              "t": 0.875,
+              "value": 0,
+              "ease": "easeOut"
+            },
+            {
+              "t": 0.9375,
+              "value": 0.029,
+              "ease": "easeIn"
+            },
+            {
+              "t": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
