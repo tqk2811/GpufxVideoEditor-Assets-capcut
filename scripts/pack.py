@@ -5,6 +5,11 @@
     python scripts/pack.py -o out       # into out/
     python scripts/pack.py --check      # only validate the sources
 
+Also packs every gpufx shader package of packages/gpufx/capcut-anim/<name>/ (manifest.json +
+shaders/) into dist/<package id>.zip, with LICENSE.txt and NOTICE.txt added at the zip root. Each one
+is checked first: id io.github.tqk2811.capcut-anim.<name>, the standard description, a float
+`progress` param 0..1, and every shader it names present.
+
 Source: animations/<pack>/pack.json (id, name, version, items). An item may carry a "description",
 which stays in the source and is left out of the manifest. Each zip has, at its root, manifest.json
 (format 1, type "clip-animation"), LICENSE.txt (the repository LICENSE) and NOTICE.txt. The zips are
@@ -26,6 +31,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ANIMATIONS = ROOT / "animations"
+SHADER_PACKAGES = ROOT / "packages" / "gpufx" / "capcut-anim"
+SHADER_ID_PREFIX = "io.github.tqk2811.capcut-anim."
 FIXED_TIME = (1980, 1, 1, 0, 0, 0)
 SAFE_ID = re.compile(r"^[A-Za-z0-9._-]+$")
 KINDS = ("in", "out", "loop")
@@ -165,12 +172,45 @@ def build_manifest(source_file):
     }
 
 
-def write_zip(target, manifest):
-    entries = {
-        "manifest.json": json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
-        "LICENSE.txt": (ROOT / "LICENSE").read_text(encoding="utf-8"),
-        "NOTICE.txt": NOTICE,
-    }
+SHADER_NOTICE = """This gpufx package recreates the behaviour of a CapCut animation, written anew from a
+description of how it looks. No CapCut asset, code, shader, font or image is included. CapCut is a
+trademark of its owner; this project is not affiliated with it.
+"""
+SHADER_DESCRIPTION = re.compile(r'Recreation of the CapCut "[^"]+" animation\. Drive `progress` from 0 to 1\.')
+
+
+def check_shader_package(folder):
+    """The manifest follows this repository's rules and the package holds exactly its shaders."""
+    where = f"packages/gpufx/capcut-anim/{folder.name}"
+    manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+    if manifest.get("id") != SHADER_ID_PREFIX + folder.name:
+        fail(f"{where}: the id must be {SHADER_ID_PREFIX + folder.name}")
+    if not SHADER_DESCRIPTION.fullmatch(str(manifest.get("description", ""))):
+        fail(f"{where}: the description does not follow the standard form")
+    progress = [p for p in manifest.get("params", []) if p.get("name") == "progress"]
+    if len(progress) != 1 or progress[0].get("type") != "float" or progress[0].get("min") != 0 \
+            or progress[0].get("max") != 1:
+        fail(f"{where}: needs one float param 'progress' from 0 to 1")
+    names = {"manifest.json"}
+    for group in manifest.get("groups", []):
+        for step in group.get("passes", []):
+            shader = step.get("shader", "")
+            if not shader or not (folder / shader).is_file():
+                fail(f"{where}: missing shader '{shader}'")
+            names.add(shader)
+    extra = {f.relative_to(folder).as_posix() for f in folder.rglob("*") if f.is_file()} - names
+    if extra:
+        fail(f"{where}: files no pass uses: {', '.join(sorted(extra))}")
+    return manifest, sorted(names)
+
+
+def write_zip(target, manifest=None, entries=None):
+    if entries is None:
+        entries = {
+            "manifest.json": json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+            "NOTICE.txt": NOTICE,
+        }
+    entries["LICENSE.txt"] = (ROOT / "LICENSE").read_text(encoding="utf-8")
     target.parent.mkdir(parents=True, exist_ok=True)
     temporary = target.with_suffix(".zip.tmp")
     with zipfile.ZipFile(temporary, "w") as archive:
@@ -200,6 +240,16 @@ def main():
         target = args.output / f"{manifest['id']}.zip"
         write_zip(target, manifest)
         print(f"wrote {target} ({len(manifest['items'])} items)")
+    for folder in sorted(f for f in SHADER_PACKAGES.glob("*") if (f / "manifest.json").is_file()):
+        manifest, names = check_shader_package(folder)
+        if args.check:
+            print(f"{manifest['id']}: ok")
+            continue
+        entries = {name: (folder / name).read_text(encoding="utf-8") for name in names}
+        entries["NOTICE.txt"] = SHADER_NOTICE
+        target = args.output / f"{manifest['id']}.zip"
+        write_zip(target, entries=entries)
+        print(f"wrote {target}")
 
 
 if __name__ == "__main__":
