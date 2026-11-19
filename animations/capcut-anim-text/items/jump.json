@@ -1,0 +1,50 @@
+{
+  "id": "jump",
+  "name": "Jump",
+  "description": "Hops up with a small crouch before and after (CapCut \"Jump\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "loop",
+  "default_duration": 0.5,
+  "applies_to": [
+    "text"
+  ],
+  "curve": {
+    "tracks": {
+      "dy": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 0.0625,
+          "value": 0.029,
+          "ease": "easeIn"
+        },
+        {
+          "t": 0.125,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 0.5,
+          "value": -0.174,
+          "ease": "easeIn"
+        },
+        {
+          "t": 0.875,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 0.9375,
+          "value": 0.029,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

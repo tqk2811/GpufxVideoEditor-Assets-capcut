@@ -1,0 +1,33 @@
+{
+  "id": "grow-out",
+  "name": "Grow Out",
+  "description": "Grows to 1.5 times its size while fading out (CapCut \"Zoom In\", out). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "out",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 1.5
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

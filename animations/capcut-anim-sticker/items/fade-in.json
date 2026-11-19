@@ -1,0 +1,25 @@
+{
+  "id": "fade-in",
+  "name": "Fade In",
+  "description": "Fades in (CapCut \"Fade In\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "applies_to": [
+    "sticker"
+  ],
+  "curve": {
+    "tracks": {
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

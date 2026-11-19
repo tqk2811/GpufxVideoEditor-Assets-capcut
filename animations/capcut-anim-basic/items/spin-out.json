@@ -1,0 +1,44 @@
+{
+  "id": "spin-out",
+  "name": "Spin Out",
+  "description": "Turns a full circle counter-clockwise while shrinking away (CapCut \"Spin Out 1\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "out",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 0.01
+        }
+      ],
+      "rotation": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": -360
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0.8,
+          "value": 1,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

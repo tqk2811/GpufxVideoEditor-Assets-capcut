@@ -1,0 +1,33 @@
+{
+  "id": "zoom-in",
+  "name": "Zoom In",
+  "description": "Grows from half size while fading in (CapCut \"Zoom In\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 0.5,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "slide-down-out",
+  "name": "Slide Down Out",
+  "description": "Leaves downwards (CapCut \"Slide Down\", out). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "out",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "dy": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0.399
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

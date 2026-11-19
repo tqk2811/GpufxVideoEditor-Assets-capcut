@@ -1,0 +1,33 @@
+{
+  "id": "slide-right-in",
+  "name": "Slide Right",
+  "description": "Comes in from the left (CapCut \"Slide Right\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "dx": [
+        {
+          "t": 0,
+          "value": -0.399,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

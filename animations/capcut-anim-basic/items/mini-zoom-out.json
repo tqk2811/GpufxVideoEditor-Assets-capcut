@@ -1,0 +1,44 @@
+{
+  "id": "mini-zoom-out",
+  "name": "Mini Zoom Out",
+  "description": "Grows a little and rises, fading in the last fifth (CapCut \"Mini Zoom\", out). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "out",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 1.11
+        }
+      ],
+      "dy": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": -0.0225
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0.8,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

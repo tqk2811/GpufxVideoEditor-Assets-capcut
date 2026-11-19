@@ -1,0 +1,44 @@
+{
+  "id": "bob",
+  "name": "Bob",
+  "description": "Glides up and back down in one smooth arc per cycle (CapCut \"Small Jumps\", \"Excited Jumps\", \"Steady Hops\" and \"Small Bounces\", which share these keyframes). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "loop",
+  "default_duration": 0.5,
+  "applies_to": [
+    "text"
+  ],
+  "curve": {
+    "tracks": {
+      "dy": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": {
+            "cubicBezier": [
+              0.33,
+              0,
+              0.67,
+              1
+            ]
+          }
+        },
+        {
+          "t": 0.5,
+          "value": -0.15,
+          "ease": {
+            "cubicBezier": [
+              0.33,
+              0,
+              0.67,
+              1
+            ]
+          }
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

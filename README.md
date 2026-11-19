@@ -16,8 +16,11 @@ CapCut is a trademark of its owner, and this project is not affiliated with it.
 | `capcut-anim-text.zip` | text | shrink in/out, spin in, jump, bob |
 | `capcut-anim-sticker.zip` | sticker | fade in/out, rotate, flip |
 
-The sources are `animations/<pack>/pack.json`. Each item has a `description` that names the
-CapCut preset it recreates; the description stays in the source and is not part of the manifest.
+The sources are `animations/<pack>/pack.json` (id, name, version and `items`, the item ids in order)
+and one `animations/<pack>/items/<id>.json` per item. The id of an item is its file name; a listed id
+without a file, a file that is not listed and a duplicate id are errors. Each item has a `description`
+that names the CapCut preset it recreates; the description stays in the source and is not part of the
+zip. A zip has `manifest.json` (`items` = the item ids) and `items/<id>.json`, next to the licence files.
 
 Moves are in parts of the output frame. CapCut moves by a multiple of the clip size, so these packs
 use a reference clip of 0.3 of the frame. Turns are in degrees, clockwise.
@@ -30,7 +33,8 @@ python scripts/pack.py --check   # validate the sources only
 ```
 
 Only the Python standard library is needed. The zips are reproducible byte for byte, and each
-manifest is checked against the rules of the editor's strict pack reader before it is written.
+manifest and item is checked against the rules of the editor's strict pack reader (including the ease
+forms `power`, `elastic`, `bounce`, `steps` and `wave` with their parameter ranges) before it is written.
 
 ## Install
 

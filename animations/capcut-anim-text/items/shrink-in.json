@@ -1,0 +1,36 @@
+{
+  "id": "shrink-in",
+  "name": "Shrink In",
+  "description": "Shrinks from 1.5 times its size while fading in (CapCut \"Zoom Out\", in). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "applies_to": [
+    "text"
+  ],
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 1.5,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

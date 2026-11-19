@@ -1,0 +1,33 @@
+{
+  "id": "slide-left-out",
+  "name": "Slide Left Out",
+  "description": "Leaves to the left (CapCut \"Slide Left\", out). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "out",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "dx": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": -0.399
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "shake",
+  "name": "Shake",
+  "description": "Rocks 15 degrees to each side (CapCut \"Shake 1\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "loop",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "rotation": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "linear"
+        },
+        {
+          "t": 0.25,
+          "value": 15,
+          "ease": "linear"
+        },
+        {
+          "t": 0.75,
+          "value": -15,
+          "ease": "linear"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

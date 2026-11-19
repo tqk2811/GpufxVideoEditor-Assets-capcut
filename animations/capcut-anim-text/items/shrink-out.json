@@ -1,0 +1,36 @@
+{
+  "id": "shrink-out",
+  "name": "Shrink Out",
+  "description": "Shrinks to half size while fading out (CapCut \"Zoom Out\", out). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "out",
+  "default_duration": 0.5,
+  "applies_to": [
+    "text"
+  ],
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0.5
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "easeIn"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ]
+    }
+  }
+}

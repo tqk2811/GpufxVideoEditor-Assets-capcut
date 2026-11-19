@@ -1,0 +1,40 @@
+{
+  "id": "flip",
+  "name": "Flip",
+  "description": "Turns around its vertical axis once per cycle, drawn as a flat width change without mirroring (CapCut \"Flip II\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "loop",
+  "default_duration": 0.5,
+  "applies_to": [
+    "sticker"
+  ],
+  "curve": {
+    "tracks": {
+      "scaleX": [
+        {
+          "t": 0,
+          "value": 1,
+          "ease": "inSine"
+        },
+        {
+          "t": 0.25,
+          "value": 0,
+          "ease": "outSine"
+        },
+        {
+          "t": 0.5,
+          "value": 1,
+          "ease": "inSine"
+        },
+        {
+          "t": 0.75,
+          "value": 0,
+          "ease": "outSine"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

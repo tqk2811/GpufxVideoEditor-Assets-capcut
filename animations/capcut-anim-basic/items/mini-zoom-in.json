@@ -1,0 +1,44 @@
+{
+  "id": "mini-zoom-in",
+  "name": "Mini Zoom In",
+  "description": "Grows a little and rises into place (CapCut \"Mini Zoom\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 0.9,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ],
+      "dy": [
+        {
+          "t": 0,
+          "value": 0.0225,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 0.2,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

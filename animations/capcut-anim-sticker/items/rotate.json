@@ -1,0 +1,25 @@
+{
+  "id": "rotate",
+  "name": "Rotate",
+  "description": "Turns a full circle clockwise per cycle (CapCut \"Rotate\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "loop",
+  "default_duration": 0.5,
+  "applies_to": [
+    "sticker"
+  ],
+  "curve": {
+    "tracks": {
+      "rotation": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "linear"
+        },
+        {
+          "t": 1,
+          "value": 360
+        }
+      ]
+    }
+  }
+}

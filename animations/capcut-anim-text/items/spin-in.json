@@ -1,0 +1,47 @@
+{
+  "id": "spin-in",
+  "name": "Spin In",
+  "description": "Turns two circles clockwise while growing from a dot (CapCut \"Spin In 1\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "applies_to": [
+    "text"
+  ],
+  "curve": {
+    "tracks": {
+      "scale": [
+        {
+          "t": 0,
+          "value": 0.01,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ],
+      "rotation": [
+        {
+          "t": 0,
+          "value": -720,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 0.2,
+          "value": 1
+        }
+      ]
+    }
+  }
+}

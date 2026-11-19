@@ -1,0 +1,33 @@
+{
+  "id": "slide-down-in",
+  "name": "Slide Down",
+  "description": "Comes in from above (CapCut \"Slide Down\"). Recreated and optimized with reference to CapCut's resources.",
+  "kind": "in",
+  "default_duration": 0.5,
+  "curve": {
+    "tracks": {
+      "dy": [
+        {
+          "t": 0,
+          "value": -0.399,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 0
+        }
+      ],
+      "opacity": [
+        {
+          "t": 0,
+          "value": 0,
+          "ease": "easeOut"
+        },
+        {
+          "t": 1,
+          "value": 1
+        }
+      ]
+    }
+  }
+}
