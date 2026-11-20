@@ -27,6 +27,6 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title "CapCut clip animations $TAG"
           else
-            gh release create "$TAG" --verify-tag --title "CapCut clip animations $TAG" --notes "Every clip animation pack as its own zip."
+            gh release create "$TAG" --verify-tag --title "CapCut clip animations $TAG" --notes "clip-animation-packs.zip: a stored zip of the clip animation packs, one item per pack. Unpack it and install each inner zip."
           fi
-          gh release upload "$TAG" dist/*.zip --clobber
+          gh release upload "$TAG" dist/clip-animation-packs.zip --clobber
