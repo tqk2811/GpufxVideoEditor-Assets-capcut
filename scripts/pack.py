@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""Build every clip animation pack of this repository into dist/<pack id>.zip.
+"""Build the clip animation packs of this repository, one item per pack.
 
-    python scripts/pack.py              # -> dist/<pack id>.zip for each animations/<pack>/
+    python scripts/pack.py              # -> dist/clip-animation-packs/<pack id>-<item id>.zip
+                                        #    and dist/clip-animation-packs.zip
     python scripts/pack.py -o out       # into out/
     python scripts/pack.py --check      # only validate the sources
 
 Source: animations/<pack>/pack.json (id, name, version, items: the item ids in order) and one
-animations/<pack>/items/<id>.json per item. An item carries a "description", which stays in the
-source and is left out of the zip. Each zip has, at its root, manifest.json (format 1, type
-"clip-animation", items = the ids), items/<id>.json, LICENSE.txt (the repository LICENSE) and
-NOTICE.txt. The zips are reproducible byte for byte (sorted entries, fixed timestamps). Standard
-library only.
+animations/<pack>/items/<id>.json per item. An item carries a "description", which is left out of the
+item file. Every item is its own pack (see item_packs.py): each zip has, at its root, manifest.json
+(format 1, type "clip-animation", items = [the item id], collection and collection_name = the
+pack.json id and name, name and description of the item), items/<id>.json, LICENSE.txt (the
+repository LICENSE) and NOTICE.txt; clip-animation-packs.zip bundles them all (stored). The zips are
+reproducible byte for byte (sorted entries, fixed timestamps). Standard library only.
 
 Before writing, each manifest is checked with the rules of the editor's strict reader
 (crates/d3d12-backend/src/clip_animation_pack.rs and engine::check_curve of GpufxVideoEditor): known
@@ -28,8 +30,12 @@ import sys
 import zipfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from item_packs import item_manifest, remove_collection, type_folder, write_bundle  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 ANIMATIONS = ROOT / "animations"
+KIND = "clip-animation"
 FIXED_TIME = (1980, 1, 1, 0, 0, 0)
 SAFE_ID = re.compile(r"^[A-Za-z0-9._-]+$")
 KINDS = ("in", "out", "loop")
@@ -161,19 +167,22 @@ def check_item(item):
 
 
 def check_manifest(manifest, items):
-    check_fields("the manifest", manifest, ("format", "type", "id", "name", "version", "license", "items"))
+    check_fields("the manifest", manifest, ("format", "type", "id", "name", "version", "license", "items",
+                                            "collection", "collection_name"), ("description",))
     if manifest["format"] != 1 or manifest["type"] != "clip-animation":
         fail("format must be 1 and type 'clip-animation'")
     if not SAFE_ID.match(manifest["id"]):
         fail("unsafe pack id")
-    for name in ("name", "version"):
+    for name in ("name", "version", "collection", "collection_name"):
         if not isinstance(manifest[name], str) or not manifest[name].strip():
             fail(f"empty {name}")
     check_fields("license", manifest["license"], ("spdx", "files"))
     if not manifest["license"]["spdx"].strip() or not manifest["license"]["files"]:
         fail("license.spdx and license.files must not be empty")
-    if not items or [item["id"] for item in items] != manifest["items"]:
-        fail("the items do not match the manifest ids")
+    if len(items) != 1 or [item["id"] for item in items] != manifest["items"]:
+        fail("a pack holds exactly one item, matching the manifest")
+    if not SAFE_ID.match(manifest["collection"]) or manifest["id"] != f"{manifest['collection']}-{manifest['items'][0]}":
+        fail(f"pack id '{manifest['id']}' is not '<collection>-<item id>'")
     for item in items:
         check_item(item)
 
@@ -254,21 +263,32 @@ def write_zip(target, manifest, items):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("-o", "--output", type=Path, default=ROOT / "dist", help="output directory")
+    parser.add_argument("-o", "--output", "--out", type=Path, default=ROOT / "dist", help="output directory")
     parser.add_argument("--check", action="store_true", help="only validate the source")
     args = parser.parse_args()
     sources = sorted(ANIMATIONS.glob("*/pack.json"))
     if not sources:
         fail("no animations/<pack>/pack.json found")
+    ids = set()
+    output = type_folder(args.output, KIND)
     for source_file in sources:
-        manifest, items = read_pack(source_file.parent)
-        check_manifest(manifest, items)
+        collection, items = read_pack(source_file.parent)
+        packs = [(item_manifest(collection, item, item["id"]), item) for item in items]
+        for manifest, item in packs:
+            check_manifest(manifest, [item])
+            if manifest["id"].lower() in ids:
+                fail(f"the pack id '{manifest['id']}' is used twice")
+            ids.add(manifest["id"].lower())
         if args.check:
-            print(f"{manifest['id']}: {len(manifest['items'])} items ok")
+            print(f"{collection['id']}: {len(packs)} packs ok")
             continue
-        target = args.output / f"{manifest['id']}.zip"
-        write_zip(target, manifest, items)
-        print(f"wrote {target} ({len(manifest['items'])} items)")
+        output.mkdir(parents=True, exist_ok=True)
+        remove_collection(output, collection["id"])
+        for manifest, item in packs:
+            write_zip(output / f"{manifest['id']}.zip", manifest, [item])
+        print(f"{collection['id']}: wrote {len(packs)} packs into {output}")
+    if not args.check:
+        write_bundle(args.output, KIND)
 
 
 if __name__ == "__main__":
